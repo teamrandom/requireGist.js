@@ -15,7 +15,7 @@ Alternatively, you can also integrate/require requireGist.js and then call gists
 
     // require(requireGist(username, gist ID))...
 
-requireGist.js is thoroughly tested in high traffic production projects and ready for use!
+requireGist.js is thoroughly tested in high traffic projects and ready for production!
 
 ###### Disclaimer
 
