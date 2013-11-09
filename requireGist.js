@@ -27,7 +27,6 @@ function requireGist(id, requestedFileNames, callback)
     xhr = new XMLHttpRequest();
     xhr.onload = sent;
     xhr.open("get", "https://api.github.com/gists/" + id, true);
-    xhr.setRequestHeader('Accept', 'application/vnd.github.v3.raw+json')
     xhr.send();
     
 }
