@@ -1,0 +1,12 @@
+<html>
+	<head></head>
+	<body>
+		<script src="requireGist.js"></script>
+		<script type="text/javascript">
+			requireGist('7390481', ['file two', 'file one'], function(first, second) {
+				first();
+				second();
+			});
+		</script>
+	</body>
+</html>
