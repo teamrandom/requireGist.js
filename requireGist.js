@@ -4,7 +4,7 @@ function requireGist(id, requestedFileNames, callback)
 
 			var contents = {},
 				callbackArgs = [],
-				response = this.responseText;
+				response = this.responseText,
 				json = JSON.parse(response);
 
 
