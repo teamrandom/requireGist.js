@@ -1,27 +1,11 @@
-function requireGist(id, requestedFileNames, callback) {
-  function sent() {
-    var contents = {},
-      callbackArgs = [],
-      response = this.responseText,
-      json = JSON.parse(response);
+async function requireGist(id, requestedFileNames, callback) {
+  const fetchResult = await fetch(`https://api.github.com/gists/${id}`);
+  const json = await fetchResult.json();
 
-    for (var file in json.files) {
-      file = json.files[file];
-
-      if (requestedFileNames.indexOf(file.filename) > -1) {
-        contents[file.filename] = file.content;
-      }
+  return Object.keys(json.files).reduce((funcs, fileName) => {
+    if (requestedFileNames.includes(fileName)) {
+      funcs.push(new Function(json.files[fileName].content));
     }
-
-    requestedFileNames.forEach(function(name) {
-      callbackArgs.push(new Function(contents[name]));
-    });
-
-    callback.apply(window, callbackArgs);
-  }
-
-  xhr = new XMLHttpRequest();
-  xhr.onload = sent;
-  xhr.open('get', 'https://api.github.com/gists/' + id, true);
-  xhr.send();
+    return funcs;
+  }, []);
 }
